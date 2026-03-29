@@ -1,34 +1,43 @@
 import { motion } from "framer-motion";
+import mediMindImg from "../../assets/medimind.png";
 
 const projects = [
   {
     id: 1,
-    title: "Project Zero",
-    category: "Brand Identity",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-    year: "2023",
+    title: "MediMind AI",
+    category: "AI · Healthcare · Telemedicine",
+    image: mediMindImg,
+    year: "2025",
+    link: "https://medimindai1.netlify.app/",
+    github: "https://github.com/iamfardinn/MediMind-AI",
   },
   {
     id: 2,
-    title: "Studio Alpha",
-    category: "Web Design",
+    title: "Coming Soon",
+    category: "Web App",
     image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2694&auto=format&fit=crop",
-    year: "2023",
+    year: "2025",
+    link: "#",
+    github: "#",
   },
   {
     id: 3,
-    title: "Neon Horizon",
-    category: "E-Commerce",
+    title: "Coming Soon",
+    category: "Full Stack",
     image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2670&auto=format&fit=crop",
-    year: "2022",
+    year: "2025",
+    link: "#",
+    github: "#",
   },
   {
     id: 4,
-    title: "Vanguard",
+    title: "Coming Soon",
     category: "Mobile App",
     image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop",
-    year: "2024",
-  }
+    year: "2025",
+    link: "#",
+    github: "#",
+  },
 ];
 
 export default function ProjectGrid() {
@@ -41,7 +50,7 @@ export default function ProjectGrid() {
              Selected<br />Work
            </h2>
            <p className="max-w-md text-sm md:text-base text-[#888] font-mono leading-relaxed uppercase tracking-widest">
-              A curated collection of recent commissions focusing on interactive design and motion.
+               A curated collection of projects — production-ready systems, AI integrations, and full-stack applications.
            </p>
         </header>
 
@@ -66,11 +75,17 @@ export default function ProjectGrid() {
                </div>
                
                <div className="flex justify-between items-start mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <div>
-                    <h3 className="text-xl md:text-3xl font-serif">{project.title}</h3>
-                    <p className="text-[#888] mt-2 text-sm tracking-widest uppercase">{project.category}</p>
-                  </div>
-                  <span className="font-mono text-sm text-[#888]">{project.year}</span>
+                   <div>
+                     <h3 className="text-xl md:text-3xl font-serif">{project.title}</h3>
+                     <p className="text-[#888] mt-2 text-sm tracking-widest uppercase">{project.category}</p>
+                     {project.link !== '#' && (
+                       <div className="flex gap-4 mt-3">
+                         <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-white border-b border-white/30 hover:border-white transition-colors pb-0.5">Live ↗</a>
+                         <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-[#888] border-b border-[#888]/30 hover:border-[#888] transition-colors pb-0.5">GitHub ↗</a>
+                       </div>
+                     )}
+                   </div>
+                   <span className="font-mono text-sm text-[#888]">{project.year}</span>
                </div>
             </motion.div>
           ))}
