@@ -8,14 +8,9 @@ export default function Footer() {
           Let's talk.
         </h2>
         
-        <div className="w-full flex flex-col md:flex-row justify-between items-center text-sm md:text-base font-medium opacity-80 gap-6 md:gap-0 mt-8">
-          <div className="flex gap-8">
-            <a href="#" className="hover:opacity-60 transition-opacity">Instagram</a>
-            <a href="#" className="hover:opacity-60 transition-opacity">Twitter</a>
-            <a href="#" className="hover:opacity-60 transition-opacity">LinkedIn</a>
-          </div>
-          
-          <p>© {new Date().getFullYear()} Stelvio Clone. All rights reserved.</p>
+        <div className="flex gap-8 text-sm font-medium opacity-80">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=fardindm69@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">Gmail</a>
+          <a href="https://github.com/iamfardinn" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">GitHub</a>
         </div>
       </div>
     </footer>

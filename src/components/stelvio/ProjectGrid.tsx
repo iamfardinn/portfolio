@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import mediMindImg from "../../assets/medimind.png";
+import fnaticImg from "../../assets/fnatic.png";
+import deepworkImg from "../../assets/deepwork.png";
 
 const projects = [
   {
@@ -13,21 +15,21 @@ const projects = [
   },
   {
     id: 2,
-    title: "Coming Soon",
-    category: "Web App",
-    image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=2694&auto=format&fit=crop",
+    title: "Fnatic",
+    category: "Gaming · Web Design · Frontend",
+    image: fnaticImg,
     year: "2025",
-    link: "#",
-    github: "#",
+    link: "https://fnatics-72c600.netlify.app",
+    github: "https://github.com/iamfardinn/fnatic",
   },
   {
     id: 3,
-    title: "Coming Soon",
-    category: "Full Stack",
-    image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=2670&auto=format&fit=crop",
+    title: "DeepWork Timer",
+    category: "Productivity · Desktop App · Real-time",
+    image: deepworkImg,
     year: "2025",
     link: "#",
-    github: "#",
+    github: "https://github.com/iamfardinn/DeepWork_Frontend",
   },
   {
     id: 4,
@@ -78,12 +80,16 @@ export default function ProjectGrid() {
                    <div>
                      <h3 className="text-xl md:text-3xl font-serif">{project.title}</h3>
                      <p className="text-[#888] mt-2 text-sm tracking-widest uppercase">{project.category}</p>
-                     {project.link !== '#' && (
-                       <div className="flex gap-4 mt-3">
-                         <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-white border-b border-white/30 hover:border-white transition-colors pb-0.5">Live ↗</a>
-                         <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-[#888] border-b border-[#888]/30 hover:border-[#888] transition-colors pb-0.5">GitHub ↗</a>
-                       </div>
-                     )}
+                      {(project.link !== '#' || project.github !== '#') && (
+                        <div className="flex gap-4 mt-3">
+                          {project.link !== '#' && (
+                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-white border-b border-white/30 hover:border-white transition-colors pb-0.5">Live ↗</a>
+                          )}
+                          {project.github !== '#' && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono tracking-widest uppercase text-[#888] border-b border-[#888]/30 hover:border-[#888] transition-colors pb-0.5">GitHub ↗</a>
+                          )}
+                        </div>
+                      )}
                    </div>
                    <span className="font-mono text-sm text-[#888]">{project.year}</span>
                </div>
