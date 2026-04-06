@@ -2,18 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextBlockAnimation } from './ui/text-block-animation';
+import profileImg from '../assets/profile.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── FA Monogram ─────────────────────────────────────────── */
-const FAMonogram: React.FC = () => {
-  const cardRef   = useRef<HTMLDivElement>(null);
-  const blob1Ref  = useRef<HTMLDivElement>(null);
-  const blob2Ref  = useRef<HTMLDivElement>(null);
+/* ─── Profile Card ────────────────────────────────────────── */
+const ProfileCard: React.FC = () => {
+  const cardRef  = useRef<HTMLDivElement>(null);
+  const blob1Ref = useRef<HTMLDivElement>(null);
+  const blob2Ref = useRef<HTMLDivElement>(null);
+  const imgRef   = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
       /* Blobs — slow drift */
       gsap.to(blob1Ref.current, {
         x: 30, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut',
@@ -21,9 +22,10 @@ const FAMonogram: React.FC = () => {
       gsap.to(blob2Ref.current, {
         x: -25, y: 25, duration: 8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5,
       });
-
-
-
+      /* Subtle float on the photo */
+      gsap.to(imgRef.current, {
+        y: -8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut',
+      });
     }, cardRef);
 
     return () => ctx.revert();
@@ -32,9 +34,9 @@ const FAMonogram: React.FC = () => {
   return (
     <div
       ref={cardRef}
-      className="relative flex flex-col items-center justify-center rounded-2xl overflow-hidden select-none"
+      className="relative flex flex-col items-center justify-end rounded-2xl overflow-hidden select-none"
       style={{
-        minHeight: '340px',
+        minHeight: '420px',
         background: '#0c0c0c',
         border: '1px solid rgba(255,255,255,0.07)',
       }}
@@ -54,24 +56,49 @@ const FAMonogram: React.FC = () => {
       {/* Soft aurora blobs */}
       <div ref={blob1Ref} style={{
         position: 'absolute',
-        width: '260px', height: '260px',
+        width: '280px', height: '280px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255,60,0,0.22) 0%, transparent 70%)',
-        top: '-40px', left: '-40px',
-        filter: 'blur(40px)',
+        background: 'radial-gradient(circle, rgba(255,60,0,0.18) 0%, transparent 70%)',
+        top: '-50px', left: '-50px',
+        filter: 'blur(50px)',
         pointerEvents: 'none',
       }} />
       <div ref={blob2Ref} style={{
         position: 'absolute',
-        width: '220px', height: '220px',
+        width: '240px', height: '240px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(90,142,166,0.2) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(90,142,166,0.18) 0%, transparent 70%)',
         bottom: '-30px', right: '-30px',
-        filter: 'blur(40px)',
+        filter: 'blur(50px)',
         pointerEvents: 'none',
       }} />
 
+      {/* Bottom glow under photo */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0, left: '50%', transform: 'translateX(-50%)',
+        width: '70%', height: '120px',
+        background: 'radial-gradient(ellipse, rgba(255,80,30,0.15) 0%, transparent 70%)',
+        filter: 'blur(20px)',
+        pointerEvents: 'none',
+      }} />
 
+      {/* Profile photo */}
+      <img
+        ref={imgRef}
+        src={profileImg}
+        alt="Fardin — profile"
+        style={{
+          position: 'relative',
+          width: '88%',
+          maxWidth: '360px',
+          objectFit: 'contain',
+          objectPosition: 'bottom',
+          display: 'block',
+          marginBottom: 0,
+          filter: 'drop-shadow(0 8px 40px rgba(255,80,30,0.35)) drop-shadow(0 2px 12px rgba(0,0,0,0.6))',
+        }}
+      />
     </div>
   );
 };
@@ -97,7 +124,7 @@ export const About: React.FC = () => {
       </TextBlockAnimation>
 
       <div className="about-grid grid grid-cols-1 md:grid-cols-2 gap-12" style={{ marginTop: '3rem' }}>
-        <FAMonogram />
+        <ProfileCard />
 
         <div className="about-text flex flex-col justify-center">
           <TextBlockAnimation className="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
