@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextBlockAnimation } from './ui/text-block-animation';
-import profileImg from '../assets/profile.png';
+import { Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +11,7 @@ const ProfileCard: React.FC = () => {
   const cardRef  = useRef<HTMLDivElement>(null);
   const blob1Ref = useRef<HTMLDivElement>(null);
   const blob2Ref = useRef<HTMLDivElement>(null);
-  const imgRef   = useRef<HTMLImageElement>(null);
+  const iconRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -22,8 +22,8 @@ const ProfileCard: React.FC = () => {
       gsap.to(blob2Ref.current, {
         x: -25, y: 25, duration: 8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5,
       });
-      /* Subtle float on the photo */
-      gsap.to(imgRef.current, {
+      /* Subtle float on the icon */
+      gsap.to(iconRef.current, {
         y: -8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut',
       });
     }, cardRef);
@@ -73,7 +73,7 @@ const ProfileCard: React.FC = () => {
         pointerEvents: 'none',
       }} />
 
-      {/* Bottom glow under photo */}
+      {/* Bottom glow under icon */}
       <div style={{
         position: 'absolute',
         bottom: 0, left: '50%', transform: 'translateX(-50%)',
@@ -83,22 +83,20 @@ const ProfileCard: React.FC = () => {
         pointerEvents: 'none',
       }} />
 
-      {/* Profile photo */}
-      <img
-        ref={imgRef}
-        src={profileImg}
-        alt="Fardin — profile"
-        style={{
-          position: 'relative',
-          width: '88%',
-          maxWidth: '360px',
-          objectFit: 'contain',
-          objectPosition: 'bottom',
-          display: 'block',
-          marginBottom: 0,
-          filter: 'drop-shadow(0 8px 40px rgba(255,80,30,0.35)) drop-shadow(0 2px 12px rgba(0,0,0,0.6))',
-        }}
-      />
+      {/* Decorative Icon */}
+      <div 
+        ref={iconRef}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
+      >
+        <Sparkles
+          size={120}
+          color="#ff6a3d"
+          strokeWidth={1}
+          style={{
+            filter: 'drop-shadow(0 8px 40px rgba(255,80,30,0.4))',
+          }}
+        />
+      </div>
     </div>
   );
 };
