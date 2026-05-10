@@ -31,6 +31,7 @@ const projects = [
     year: "2025",
     link: "#",
     github: "https://github.com/iamfardinn/DeepWork_Frontend",
+    imageAlign: "object-center origin-center",
   },
   {
     id: 4,
@@ -46,7 +47,7 @@ const projects = [
 export default function ProjectGrid() {
   return (
     <section id="work" className="bg-[#111] text-[#EFEFEF] py-24 md:py-48 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
 
         <header className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end">
           <h2 className="text-4xl md:text-6xl lg:text-8xl font-serif tracking-tighter leading-none mb-6 md:mb-0">
@@ -57,7 +58,7 @@ export default function ProjectGrid() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-12 md:gap-y-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-24 md:gap-y-32">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -67,13 +68,13 @@ export default function ProjectGrid() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className={`group cursor-pointer ${index % 2 !== 0 ? 'md:mt-32' : ''}`}
             >
-              <div className="overflow-hidden bg-[#222] aspect-[4/5] relative">
+              <div className="overflow-hidden bg-[#222] aspect-[4/3] rounded-sm relative">
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover origin-center filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                  className={`w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ${project.imageAlign || 'object-top origin-top'}`}
                 />
               </div>
 

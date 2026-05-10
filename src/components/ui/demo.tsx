@@ -82,7 +82,7 @@ const HalideLanding: React.FC = () => {
           font-family: 'Syncopate', sans-serif;
           overflow: hidden;
           height: 100vh;
-          width: 100vw;
+          width: 100%;
           margin: 0;
           display: flex;
           align-items: center;
@@ -100,7 +100,7 @@ const HalideLanding: React.FC = () => {
         .viewport {
           position: relative;
           perspective: 2000px;
-          width: 100vw; height: 100vh;
+          width: 100%; height: 100vh;
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
         }
