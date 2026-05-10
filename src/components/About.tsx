@@ -2,29 +2,19 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextBlockAnimation } from './ui/text-block-animation';
-import { Sparkles } from 'lucide-react';
+import profileImg from '../assets/profile.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─── Profile Card ────────────────────────────────────────── */
 const ProfileCard: React.FC = () => {
   const cardRef  = useRef<HTMLDivElement>(null);
-  const blob1Ref = useRef<HTMLDivElement>(null);
-  const blob2Ref = useRef<HTMLDivElement>(null);
-  const iconRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Subtle float effect on the entire card
     const ctx = gsap.context(() => {
-      /* Blobs — slow drift */
-      gsap.to(blob1Ref.current, {
-        x: 30, y: -20, duration: 6, repeat: -1, yoyo: true, ease: 'sine.inOut',
-      });
-      gsap.to(blob2Ref.current, {
-        x: -25, y: 25, duration: 8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.5,
-      });
-      /* Subtle float on the icon */
-      gsap.to(iconRef.current, {
-        y: -8, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut',
+      gsap.to(cardRef.current, {
+        y: -10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut',
       });
     }, cardRef);
 
@@ -34,67 +24,13 @@ const ProfileCard: React.FC = () => {
   return (
     <div
       ref={cardRef}
-      className="relative flex flex-col items-center justify-end rounded-2xl overflow-hidden select-none"
-      style={{
-        minHeight: '420px',
-        background: '#0c0c0c',
-        border: '1px solid rgba(255,255,255,0.07)',
-      }}
+      className="relative flex flex-col select-none w-full max-w-[280px] md:max-w-[380px]"
     >
-      {/* Grain overlay via SVG */}
-      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
-        <filter id="fa-grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-      </svg>
-      <div style={{
-        position: 'absolute', inset: 0, opacity: 0.055,
-        filter: 'url(#fa-grain)', borderRadius: 'inherit', pointerEvents: 'none',
-      }} />
-
-      {/* Soft aurora blobs */}
-      <div ref={blob1Ref} style={{
-        position: 'absolute',
-        width: '280px', height: '280px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255,60,0,0.18) 0%, transparent 70%)',
-        top: '-50px', left: '-50px',
-        filter: 'blur(50px)',
-        pointerEvents: 'none',
-      }} />
-      <div ref={blob2Ref} style={{
-        position: 'absolute',
-        width: '240px', height: '240px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(90,142,166,0.18) 0%, transparent 70%)',
-        bottom: '-30px', right: '-30px',
-        filter: 'blur(50px)',
-        pointerEvents: 'none',
-      }} />
-
-      {/* Bottom glow under icon */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: '50%', transform: 'translateX(-50%)',
-        width: '70%', height: '120px',
-        background: 'radial-gradient(ellipse, rgba(255,80,30,0.15) 0%, transparent 70%)',
-        filter: 'blur(20px)',
-        pointerEvents: 'none',
-      }} />
-
-      {/* Decorative Icon */}
-      <div 
-        ref={iconRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
-      >
-        <Sparkles
-          size={120}
-          color="#ff6a3d"
-          strokeWidth={1}
-          style={{
-            filter: 'drop-shadow(0 8px 40px rgba(255,80,30,0.4))',
-          }}
+      <div className="relative w-full aspect-[4/5] md:aspect-[3/4] rounded-[2rem] overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-2xl">
+        <img 
+          src={profileImg} 
+          alt="Fahim Abrar" 
+          className="w-full h-full object-cover object-bottom drop-shadow-2xl scale-[1.15] origin-bottom"
         />
       </div>
     </div>
@@ -116,15 +52,16 @@ export const About: React.FC = () => {
   }, []);
 
   return (
-    <section className="section container mx-auto px-6 py-24 text-[#EFEFEF]" id="about" ref={containerRef}>
-      <TextBlockAnimation className="text-4xl md:text-6xl font-serif mb-12">
-        {"The\nPhilosophy."}
-      </TextBlockAnimation>
+    <section className="relative bg-[#070707] py-24 px-4 md:px-12 lg:px-24 text-[#EFEFEF] overflow-hidden" id="about" ref={containerRef}>
+      <div className="max-w-[1400px] mx-auto">
+        <TextBlockAnimation className="text-5xl md:text-7xl font-serif tracking-tight leading-[1] mb-12">
+          {"The\nPhilosophy."}
+        </TextBlockAnimation>
 
-      <div className="about-grid grid grid-cols-1 md:grid-cols-2 gap-12" style={{ marginTop: '3rem' }}>
+        <div className="about-grid grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start mt-12 md:mt-20">
         <ProfileCard />
 
-        <div className="about-text flex flex-col justify-center">
+        <div className="about-text flex flex-col justify-start">
           <TextBlockAnimation className="text-xl md:text-2xl font-medium mb-6 leading-relaxed">
             {"B.Sc. in Computer Science\nAmerican International University — Bangladesh"}
           </TextBlockAnimation>
@@ -136,14 +73,6 @@ export const About: React.FC = () => {
           <TextBlockAnimation className="text-[#888] leading-relaxed" delay={0.4}>
             {"My core philosophy? Writing code that reads like a well-structured story and designing systems that scale predictably under pressure. Currently, I'm exploring distributed systems, LLM streaming pipelines, and microservice architectures."}
           </TextBlockAnimation>
-
-          <div className="tech-stack mt-12">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-[#555] mb-4">Familiar With</h4>
-            <div className="flex flex-wrap gap-2">
-              {["TypeScript", "React 19", "Express", "Node.js", "PostgreSQL", "Firebase", "Stripe", "Python", "Java", "C++"].map(skill => (
-                <span key={skill} className="px-4 py-2 bg-[#222] text-[#EFEFEF] rounded-full text-xs font-mono">{skill}</span>
-              ))}
-            </div>
           </div>
         </div>
       </div>

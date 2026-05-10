@@ -201,31 +201,63 @@ const HalideLanding: React.FC = () => {
         <div className="halide-grain" style={{ filter: 'url(#grain)' }}></div>
 
         <div className="interface-grid">
-          <div style={{ fontWeight: 700 }}>FAHIM_ABRAR</div>
+          <div style={{ fontWeight: 700 }}>
+            <span style={{ color: 'var(--accent)' }}>~</span> FA
+          </div>
           <div className="status-container" style={{ textAlign: 'right', fontFamily: 'monospace', color: 'var(--accent)', fontSize: '0.7rem' }}>
             <div>STATUS: ONLINE</div>
             <div>LATENCY: 12MS</div>
           </div>
 
-          <div className="hero-title">
-            <GradientWaveText 
-              align="left"
-              speed={1.5} 
-              repeat={true} 
-              bandCount={10} 
-              className="m-0"
-              customColors={["#ffffff", "#e0e0e0", "#888888", "#ff3c00", "#5a8ea6"]}
-            >
-              HELLO, WORLD
-            </GradientWaveText>
+          <div className="hero-title" style={{ mixBlendMode: 'normal' }}>
+            <div className="flex flex-row items-center gap-4 md:gap-6 leading-[0.9]">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-pixel text-white uppercase tracking-wide">
+                FAHIM
+              </div>
+              <div 
+                className="text-4xl md:text-5xl lg:text-6xl font-pixel text-[var(--accent)] uppercase tracking-wide"
+                style={{ textShadow: "0 0 20px rgba(255, 60, 0, 0.5), 0 0 40px rgba(255, 60, 0, 0.2)" }}
+              >
+                ABRAR
+              </div>
+            </div>
           </div>
 
-          <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', textAlign: 'left' }}>
-            <div style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>
+          <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', textAlign: 'left', zIndex: 30, pointerEvents: 'auto' }}>
+            <div style={{ fontFamily: 'monospace', fontSize: '0.75rem', paddingBottom: '1rem' }} className="hidden md:block">
               <p>[ FULL STACK ]</p>
               <p>SYSTEM ARCHITECTURE & UI/UX</p>
             </div>
-            <a href="#work" className="cta-button">Explore</a>
+            
+            <div className="flex flex-col items-end gap-6 w-full md:w-auto mt-8 md:mt-0">
+              {/* Social Links */}
+              <div className="flex gap-4">
+                <a href="https://github.com/iamfardinn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 bg-[#111]/80 hover:bg-white/10 flex items-center justify-center text-[#888] hover:text-white transition-colors backdrop-blur-sm">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path></svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 bg-[#111]/80 hover:bg-white/10 flex items-center justify-center text-[#888] hover:text-white transition-colors backdrop-blur-sm">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://codeforces.com/profile/abrar3669" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/10 bg-[#111]/80 hover:bg-white/10 flex items-center justify-center transition-colors backdrop-blur-sm group">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 group-hover:opacity-100 transition-opacity">
+                    <rect x="16" y="4" width="4" height="16" fill="#FF3B30" />
+                    <rect x="10" y="10" width="4" height="10" fill="#007AFF" />
+                    <rect x="4" y="14" width="4" height="6" fill="#FFCC00" />
+                  </svg>
+                </a>
+              </div>
+
+              {/* Stats */}
+              <div className="flex gap-6 md:gap-8 pb-2">
+                <div className="flex flex-col items-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-1 flex items-start font-sans">
+                    9<span className="text-[var(--accent)] text-lg md:text-xl ml-0.5">+</span>
+                  </h3>
+                  <p className="text-[#888] text-[9px] md:text-[10px] font-mono uppercase tracking-widest">Projects</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
