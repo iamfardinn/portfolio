@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import heroBg from '../../assets/hero-bg.jpeg';
-import GradientWaveText from './gradient-wave-text';
-
 const HalideLanding: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const layersRef = useRef<HTMLDivElement[]>([]);
