@@ -8,10 +8,21 @@ const HalideLanding: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Mouse Parallax Logic
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (window.innerWidth / 2 - e.pageX) / 25;
-      const y = (window.innerHeight / 2 - e.pageY) / 25;
+    // Parallax & Idle Animation Logic
+    let mouseX = 0;
+    let mouseY = 0;
+    let time = 0;
+    let animationFrameId: number;
+
+    const render = () => {
+      time += 0.005; // Idle rotation speed
+      
+      // Auto rotation adds a gentle sway
+      const autoX = Math.sin(time) * 15;
+      const autoY = Math.cos(time * 0.8) * 15;
+      
+      const x = mouseX + autoX;
+      const y = mouseY + autoY;
 
       // Rotate the 3D Canvas
       canvas.style.transform = `rotateX(${55 + y / 2}deg) rotateZ(${-25 + x / 2}deg)`;
@@ -24,7 +35,17 @@ const HalideLanding: React.FC = () => {
         const moveY = y * (index + 1) * 0.2;
         layer.style.transform = `translateZ(${depth}px) translate(${moveX}px, ${moveY}px)`;
       });
+
+      animationFrameId = requestAnimationFrame(render);
     };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX = (window.innerWidth / 2 - e.pageX) / 25;
+      mouseY = (window.innerHeight / 2 - e.pageY) / 25;
+    };
+
+    // Start animation loop
+    render();
 
     // Entrance Animation
     canvas.style.opacity = '0';
@@ -41,6 +62,7 @@ const HalideLanding: React.FC = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       clearTimeout(timeout);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

@@ -77,7 +77,7 @@ export default function ProjectGrid() {
                 />
               </div>
 
-              <div className="flex justify-between items-start mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <div className="flex justify-between items-start mt-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
                 <div>
                   <h3 className="text-xl md:text-3xl font-serif">{project.title}</h3>
                   <p className="text-[#888] mt-2 text-sm tracking-widest uppercase">{project.category}</p>
