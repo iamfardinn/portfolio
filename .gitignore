@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Personal documents (CVs, certificates, etc.)
+*.pdf
+!public/**/*.pdf
+
+# Local scripts (placeholder generators, etc.)
+scripts/

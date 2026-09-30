@@ -3,24 +3,56 @@
 @theme {
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --color-accent: #ff3c00;
+  --color-accent-soft: #ff7a4a;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: #0a0a0a;
+    --foreground: #efefef;
   }
 
-  html, body {
+  /* Smooth scroll is handled per-link so it doesn't fight with reduced-motion preferences */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  html,
+  body {
     background-color: var(--background);
     color: var(--foreground);
     overflow-x: hidden;
     @apply antialiased font-sans;
+  }
+
+  /* Reduce-motion users get the entire site in low-cost mode */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
   }
 }
 
 @layer utilities {
   .stelvio-text-shadow {
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* GPU compositor hints — applied sparingly, only on elements actually transforming */
+  .will-transform {
+    will-change: transform;
+    transform: translateZ(0);
   }
 }
